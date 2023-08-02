@@ -11,7 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -28,11 +28,11 @@ public class Delivery {
 	@Column(name="transport_status")
 	private Integer transportStatus;
 	
-	@OneToOne()
+	@ManyToOne()
 	@JoinColumn(name = "last_know_location", referencedColumnName = "id")
 	private Location lastKnowLocation;
 	
-	@OneToOne()
+	@ManyToOne()
 	@JoinColumn(name = "current_voyage", referencedColumnName = "id")
 	private Voyage currentVoyage;
 	
@@ -42,6 +42,10 @@ public class Delivery {
 	private Date eta;
 	
 	public Delivery() {
+	}
+	
+	public Delivery(Long id) {
+		this.id = id;
 	}
 
 	public Delivery(Long id, Integer transportStatus, Location lastKnowLocation, Voyage currentVoyage, Date eta) {

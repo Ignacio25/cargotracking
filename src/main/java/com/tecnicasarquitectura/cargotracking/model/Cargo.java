@@ -11,7 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -25,11 +25,11 @@ public class Cargo {
 	@Column(name="tracking_id")
 	private Long id;
 	
-	@OneToOne()
+	@ManyToOne()
 	@JoinColumn(name = "loc_origin_id", referencedColumnName = "id")
 	private Location locOriginId;
 	
-	@OneToOne()
+	@ManyToOne()
 	@JoinColumn(name = "loc_dest_id", referencedColumnName = "id")
 	private Location locDestId;
 	
@@ -38,12 +38,13 @@ public class Cargo {
 	@Column(name="arrival_deadline")
 	private Date arrivalDeadline;
 	
-	@Column(name="delivery_id")
-	private Long deliveryId;
+	@ManyToOne()
+	@JoinColumn(name = "delivery_id", referencedColumnName = "id")
+	private Delivery deliveryId;
 	
 	public Cargo(){}
 	
-	public Cargo(Long id, Location locOriginId, Location locDestId, Date arrivalDeadline, Long deliveryId) {
+	public Cargo(Long id, Location locOriginId, Location locDestId, Date arrivalDeadline, Delivery deliveryId) {
 		this.id = id;
 		this.locOriginId = locOriginId;
 		this.locDestId = locDestId;
@@ -83,11 +84,11 @@ public class Cargo {
 		this.arrivalDeadline = arrivalDeadline;
 	}
 
-	public Long getDeliveryId() {
+	public Delivery getDeliveryId() {
 		return deliveryId;
 	}
 
-	public void setDeliveryId(Long deliveryId) {
+	public void setDeliveryId(Delivery deliveryId) {
 		this.deliveryId = deliveryId;
 	}
 

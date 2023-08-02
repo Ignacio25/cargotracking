@@ -22,6 +22,10 @@ public class Voyage {
 	public Voyage() {
 		
 	}
+	
+	public Voyage(Long id) {
+		this.id = id;
+	}
 
 	public Voyage(Long id, Long voyageNumber) {
 		this.id = id;

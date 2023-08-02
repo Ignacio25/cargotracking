@@ -22,10 +22,6 @@ public class CargoService {
 		return cargoRepository.findAll();
 	}
 	
-	public void deleteCargo(Long id) {
-		cargoRepository.deleteById(id);
-	}
-	
 	public Cargo updateCargo(Long id, Cargo cargo) {
 
 		return cargoRepository.findById(id)

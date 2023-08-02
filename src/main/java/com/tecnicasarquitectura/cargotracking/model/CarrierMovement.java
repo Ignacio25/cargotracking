@@ -12,7 +12,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -26,11 +25,11 @@ public class CarrierMovement {
 	@Column(name="id")
 	private Long id;
 	
-	@OneToOne()
+	@ManyToOne()
 	@JoinColumn(name = "id_arrival_location", referencedColumnName = "id")
 	private Location arrivalLocationId;
 	
-	@OneToOne()
+	@ManyToOne()
 	@JoinColumn(name = "id_departure_location", referencedColumnName = "id")
 	private Location departureLocationId;
 	
