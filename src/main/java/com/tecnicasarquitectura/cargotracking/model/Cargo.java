@@ -42,16 +42,27 @@ public class Cargo {
 	@JoinColumn(name = "delivery_id", referencedColumnName = "id")
 	private Delivery deliveryId;
 	
+	@ManyToOne()
+	@JoinColumn(name = "supplier_id", referencedColumnName = "id")
+	private Supplier supplier;
+	
+	@ManyToOne()
+	@JoinColumn(name = "customer_id", referencedColumnName = "id")
+	private Customer customer;
+	
 	public Cargo(){}
 	
-	public Cargo(Long id, Location locOriginId, Location locDestId, Date arrivalDeadline, Delivery deliveryId) {
+	public Cargo(Long id, Location locOriginId, Location locDestId, Date arrivalDeadline, Delivery deliveryId,
+			Supplier supplier, Customer customer) {
 		this.id = id;
 		this.locOriginId = locOriginId;
 		this.locDestId = locDestId;
 		this.arrivalDeadline = arrivalDeadline;
 		this.deliveryId = deliveryId;
-	}	
-	
+		this.supplier = supplier;
+		this.customer = customer;
+	}
+
 	public Long getTrackingId() {
 		return id;
 	}
@@ -92,4 +103,19 @@ public class Cargo {
 		this.deliveryId = deliveryId;
 	}
 
+	public Supplier getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 }
